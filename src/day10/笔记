@@ -1,0 +1,187 @@
+23种设计模式之单例模式
+
+ 不论何时 不论何地 获取某个类的实例 获取到的都是同一个实例
+
+ 1 构造方法私有化
+ 2 声明静态全局属性
+ 3 提供静态公开的方法 获取该属性
+
+
+
+
+charset  字符集
+
+ 计算机只认识二进制
+
+ 字模库
+
+
+  每个字符在计算机中都有一个二进制数与之对应
+
+  gbk windows平台默认的字符集
+   中文占2个字节
+
+
+ utf-8 linux默认的字符集
+   国际化组织 unicode 支持的国际上所有主流语言
+   中文 3 字节
+
+ utf-16
+   定长方案
+
+
+ UTF-16BE
+    计算机中真正的字符集编码
+
+
+ String --- 》byte[]
+     getBytes   默认使用平台的字符集
+
+
+ byte[] ---->String
+       String的构造函数
+
+    存在一种对应关系
+    结果取决于采用的编码格式
+
+
+   1 在今后项目中 所有用到编码的地方 全部使用utf8
+   2 当文件的字符集 不是程序能控制的时候
+       new String（str.getBytes("原有编码"),"utf-8"）;
+   3 如果读到的String类型本身已经是乱码
+       new String（str.getBytes("原有编码"),"utf-8"）转换
+
+
+
+String类
+
+  字符串
+  字符序列
+
+  引用类型
+
+
+  String str = new String();
+
+  String 非常常用
+  所以jdk对其进行了优化处理
+     允许直接声明值 而无需通过new 创建对象
+  String str = "sdf";
+
+String的不变模式  （不是设计模式）
+
+  String的值一旦确定 就不能改变
+
+  在堆中开辟一块特别的存储空间叫做常量池
+  当定义了一个String的变量s1 位 x
+
+  jdk首先在常量池中寻找有没有x
+  如果有 将池的地址付给s1
+  如果没有 再去开辟新的存储空 将y的新空间地址付给s1
+
+如果定义的字符串 是 字符串常量+字符串常量的形式
+    jdk优化为值
+
+
+
+StringBuffer  StringBuilder
+
+  对String有、需要进行反复的修改的时候 不建议使用String
+  使用StringBuffer或者StringBuidler
+
+
+   StringBuffer  StringBuilder   api完全一致
+
+  StringBuffer
+     线程安全 效率低
+   StringBuilder
+     线程不安全 效率高（高也不到哪去）
+
+append
+delete
+insert
+reverse
+     将此字符序列用其反转形式取代。
+
+
+正则表达式
+
+
+预定义字符类
+
+
+？表示0或者1次
+* 表示0或者多次
++ 表示1或者多次
+
+
+. 任何字符（与行结束符可能匹配也可能不匹配）
+\d 数字：[0-9]
+\D 非数字： [^0-9]
+\w 单词字符：[a-zA-Z_0-9]
+\W 非单词字符：[^\w]
+
+
+
+-----------------------------------------------------
+思考题：
+
+1
+  String s1 = new String("abc")  2
+  String s2 = "abc";             0
+  String s3 = "ab"+"c";          0
+  String s4 = "a"                1
+  String s5 = "bc"               1
+  String s6 = s4+s5
+         //  new StringBuffer()
+                 .append(s4)
+                 .append(s5)
+                 .toString();
+
+
+作业
+1  用正则表达式验证java的变量名是否符合规范
+
+2 要求不用reverse实现字符串反转
+
+3 String[] s = {"aaa","bbb","ccc"};
+  1）用","连接起来 生成一个字符串
+  2）逆向操作
+
+4 字符串："hello"
+  要求输出"heo"
+
+
+
+
+
+预习
+
+1 装箱拆箱
+
+  String Integer之间的转换
+2 枚举
+
+3 Data时间
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

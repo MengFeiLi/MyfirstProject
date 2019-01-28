@@ -1,0 +1,15 @@
+package xiancheng2.day05_ThreadLocal;
+
+public class Student {
+
+    private int age;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+}
